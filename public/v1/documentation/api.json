@@ -1,0 +1,752 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is documentatin for the Node API. For every request you must include in the header: \n Content-Type: application/json \n\n For protected routes by authorization we use JWT. Each of these have a lock by them. Must include a Bearer Token in the header \n Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ...",
+    "version": "1.0.0",
+    "title": "Rest Node API mysql + JWT",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "brian@orangetech.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "api.your-url.com",
+  "basePath": "/v1",
+  "tags": [
+    {
+      "name": "user",
+      "description": "Authentication and More",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://orangetech.io"
+      }
+    },
+    {
+      "name": "app",
+      "description": "creation and app management"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "paths": {
+    "/apps": {
+      "post": {
+        "tags": [
+          "app"
+        ],
+        "summary": "Creates App",
+        "description": "Creates a record of an App in our database",
+        "operationId": "getInventory",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiUnauthorizezdResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/apps/{app_id}": {
+      "get": {
+        "tags": [
+          "app"
+        ],
+        "summary": "Return App",
+        "description": "Returns information about App",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "name that need to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/CreateUser"
+            }
+          },
+          "400": {
+            "description": "Invalid Order"
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiUnauthorizezdResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "app"
+        ],
+        "summary": "Update app",
+        "description": "Update App information",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "name that need to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/CreateUser"
+            }
+          },
+          "400": {
+            "description": "Invalid Order"
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiUnauthorizezdResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "app"
+        ],
+        "summary": "Soft delete app",
+        "description": "soft delete app",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "name that need to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/CreateUser"
+            }
+          },
+          "400": {
+            "description": "Invalid Order"
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiUnauthorizezdResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/apps/{app_id}/hard": {
+      "delete": {
+        "tags": [
+          "app"
+        ],
+        "summary": "Hard delete app",
+        "description": "All app information will be removed from database",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "name that need to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/CreateUser"
+            }
+          },
+          "400": {
+            "description": "Invalid Order"
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiUnauthorizezdResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/apps/{app_id}/restore": {
+      "put": {
+        "tags": [
+          "app"
+        ],
+        "summary": "Restores soft deleted app",
+        "description": "All app information will be removed from database",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "description": "name that need to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/CreateUser"
+            }
+          },
+          "400": {
+            "description": "Invalid Order"
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiUnauthorizezdResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/users": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Create user",
+        "description": "Creates user that can now be used for authentication",
+        "operationId": "createUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Creates user",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateUser"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/CreateUserResponse"
+            }
+          },
+          "422": {
+            "description": "Invalid operation",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Return user",
+        "description": "This can only be done by the logged in user.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ReturnUserResponse"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiUnauthorizezdResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Update user",
+        "description": "This can only be done by the logged in user.",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Creates user",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateUserBody"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful request",
+            "schema": {
+              "$ref": "#/definitions/ApiSuccessResponse"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiUnauthorizezdResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Soft delete user",
+        "description": "This can only be done by the logged in user.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/ApiSuccessResponse"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiUnauthorizezdResponse"
+            }
+          },
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/users/hard": {
+      "delete": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Hard delete user",
+        "description": "Remove user from database",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/ApiSuccessResponse"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiUnauthorizezdResponse"
+            }
+          },
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/users/restore": {
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Restore soft deleted user",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/ApiSuccessResponse"
+            }
+          },
+          "401": {
+            "description": "unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiUnauthorizezdResponse"
+            }
+          },
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/users/login": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "User Login",
+        "description": "Returns Bearer Token for JWT authentication",
+        "operationId": "createUsersWithArrayInput",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "List of user object",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CreateUser"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/LoginUserResponse"
+            }
+          },
+          "422": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "bearer_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "http://api.your-url.io/v1/user/login",
+      "flow": "implicit"
+    },
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "CreateUser": {
+      "type": "object",
+      "properties": {
+        "unique_key | email | phone": {
+          "type": "string",
+          "example": "8885678345"
+        },
+        "password": {
+          "type": "string",
+          "example": "secure-password"
+        }
+      }
+    },
+    "CreateUserResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "example": true
+        },
+        "message": {
+          "type": "string",
+          "example": "Successfully created new user."
+        },
+        "token": {
+          "type": "string",
+          "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ...",
+          "description": "Authentication token"
+        }
+      }
+    },
+    "LoginUserResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "example": true
+        },
+        "token": {
+          "type": "string",
+          "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ...",
+          "description": "Authentication token"
+        }
+      }
+    },
+    "ReturnUserResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "example": true
+        },
+        "user": {
+          "type": "object",
+          "properties": {
+            "first": {
+              "type": "string",
+              "example": "John"
+            },
+            "last": {
+              "type": "string",
+              "example": "doe"
+            },
+            "email": {
+              "type": "string",
+              "example": "john.doe@gmail.com"
+            },
+            "phone": {
+              "type": "string",
+              "example": "8889401234"
+            },
+            "apps": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "example": "12chd73nsjuf"
+                  },
+                  "url": {
+                    "type": "string",
+                    "example": "www.orangetech.io"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "UpdateUserBody": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "string",
+          "example": "John"
+        },
+        "last": {
+          "type": "string",
+          "example": "doe"
+        },
+        "email": {
+          "type": "string",
+          "example": "john.doe@gmail.com"
+        },
+        "phone": {
+          "type": "string",
+          "example": "8889401234"
+        }
+      }
+    },
+    "ApiErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "example": false
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "ApiSuccessResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "example": true
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "ApiUnauthorizezdResponse": {
+      "type": "string",
+      "example": "Unauthorized"
+    },
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Orange Tech",
+    "url": "http://orangetech.io"
+  }
+}

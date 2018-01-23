@@ -1,0 +1,27 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "bcrypt-promise": "^2.0.0",
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "dotenv": "^4.0.0",
+    "express": "~4.15.5",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.0",
+    "mysql2": "^1.5.1",
+    "parse-error": "^0.2.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.0",
+    "sequelize": "^4.31.2",
+    "sequelize-cli": "^3.0.0",
+    "serve-favicon": "~2.4.5",
+    "validator": "^9.2.0"
+  }
+}
