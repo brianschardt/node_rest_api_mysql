@@ -33,9 +33,7 @@ module.exports = (sequelize, DataTypes) => {
 
   User.prototype.comparePassword = async function (pw) {
         let err, pass
-        if(!this.password){
-            return ['password not set'];
-        }
+        if(!this.password) TE('password not set');
 
         [err, pass] = await to(bcrypt_p.compare(pw, this.password));
         if(err) TE(err);
