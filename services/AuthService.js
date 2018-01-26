@@ -64,13 +64,14 @@ const authUser = async function(userInfo){//returns token
     if(validator.isEmail(unique_key)){
         auth_info.method='email';
 
-        [err, user] = await to(User.findOne({email:unique_key }));
+        [err, user] = await to(User.findOne({where:{email:unique_key}}));
+        console.log(err, user, unique_key);
         if(err) TE(err.message);
 
     }else if(validator.isMobilePhone(unique_key, 'any')){//checks if only phone number was sent
         auth_info.method='phone';
 
-        [err, user] = await to(User.findOne({phone:unique_key }));
+        [err, user] = await to(User.findOne({where:{phone:unique_key }}));
         if(err) TE(err.message);
 
     }else{
