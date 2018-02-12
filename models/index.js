@@ -29,7 +29,6 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-//********* END OF DB RELATIONS ********
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
