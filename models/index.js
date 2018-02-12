@@ -28,16 +28,6 @@ Object.keys(db).forEach(modelName => {
     db[modelName].associate(db);
   }
 });
-//************ DB RELATIONS ************
-
-
-//One to Many
-db.Catalog.belongsTo(db.Company);
-db.Company.hasMany(db.Catalog);
-
-//Many to Many
-db.User.belongsToMany(db.Company, {through: 'UserCompany'});
-db.Company.belongsToMany(db.User, {through: 'UserCompany'});
 
 //********* END OF DB RELATIONS ********
 db.sequelize = sequelize;

@@ -1,13 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Catalog = sequelize.define('Catalog', {
+  var Model = sequelize.define('Catalog', {
     name: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
-  return Catalog;
+
+  Model.associate = function(models){
+
+  };
+
+  return Model;
 };

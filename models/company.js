@@ -1,13 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Company = sequelize.define('Company', {
+  var Model = sequelize.define('Company', {
     name: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
-  return Company;
+
+  Model.associate = function(models){
+      this.Users = this.belongsToMany(models.User, {through: 'UserCompany'});
+  };
+
+  return Model;
 };
