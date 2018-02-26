@@ -1,4 +1,4 @@
-const User = require('../models').User;
+const User          = require('../models').User;
 const authService   = require('./../services/AuthService');
 
 const create = async function(req, res){

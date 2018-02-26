@@ -39,6 +39,10 @@ ReS = function(res, data, code){ // Success Web Response
     return res.json(send_data)
 };
 
+//This is here to handle all the uncaught promise rejections
+process.on('unhandledRejection', error => {
+    console.error('Uncaught Error', pe(error));
+});
 
 
 
