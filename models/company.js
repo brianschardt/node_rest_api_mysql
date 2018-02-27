@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       this.Users = this.belongsToMany(models.User, {through: 'UserCompany'});
   };
 
-  Model.prototype.toWeb = async function (pw) {
+  Model.prototype.toWeb = function (pw) {
       let json = this.toJSON();
       return json;
   };

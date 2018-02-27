@@ -45,6 +45,7 @@ const getAll = async function(req, res){
         companies_json.push(company_info);
     }
 
+    console.log('c t', companies_json);
     return ReS(res, {companies:companies_json});
 }
 module.exports.getAll = getAll;

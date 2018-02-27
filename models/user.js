@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
         return "Bearer "+jwt.sign({user_id:this.id}, CONFIG.jwt_encryption, {expiresIn: expiration_time});
     };
 
-    Model.prototype.toWeb = async function (pw) {
+    Model.prototype.toWeb = function (pw) {
         let json = this.toJSON();
         return json;
     };
