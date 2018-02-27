@@ -16,7 +16,10 @@ const create = async function(req, res){
     [err, company] = await to(company.save());
     if(err) return ReE(res, err, 422);
 
-    return ReS(res,{company:company}, 201);
+    let company_json = company.toWeb();
+    company_json.users = [{user:user.id}];
+
+    return ReS(res,{company:company_json}, 201);
 }
 module.exports.create = create;
 
@@ -31,12 +34,12 @@ const getAll = async function(req, res){
     for( let i in companies){
         let company = companies[i];
         let users =  await company.getUsers()
-        let company_info = company.toJSON()
+        let company_info = company.toWeb();
         let users_info = []
         for (let i in users){
             let user = users[i];
             // let user_info = user.toJSON();
-            users_info.push({user:user.id})
+            users_info.push({user:user.id});
         }
         company_info.users = users_info;
         companies_json.push(company_info);
@@ -48,8 +51,9 @@ module.exports.getAll = getAll;
 
 const get = function(req, res){
     res.setHeader('Content-Type', 'application/json');
-    let company = req.company.toJSON();
-    return ReS(res, {company:company});
+    let company = req.company;
+
+    return ReS(res, {company:company.toWeb()});
 }
 module.exports.get = get;
 
@@ -63,7 +67,7 @@ const update = async function(req, res){
     if(err){
         return ReE(res, err);
     }
-    return ReS(res, {company:company.toJSON()});
+    return ReS(res, {company:company.toWeb()});
 }
 module.exports.update = update;
 
