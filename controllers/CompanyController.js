@@ -28,14 +28,14 @@ const getAll = async function(req, res){
     let user = req.user;
     let err, companies;
 
-    [err, companies] = await to(user.getCompanies());
+    [err, companies] = await to(user.getCompanies({include: [ {association: Company.Users} ] }));
 
     let companies_json =[]
     for( let i in companies){
         let company = companies[i];
-        let users =  await company.getUsers()
+        let users =  company.Users;
         let company_info = company.toWeb();
-        let users_info = []
+        let users_info = [];
         for (let i in users){
             let user = users[i];
             // let user_info = user.toJSON();
