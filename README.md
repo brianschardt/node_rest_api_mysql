@@ -11,7 +11,7 @@ tutorial can be found here: https://medium.com/@brianalois/build-a-rest-api-for-
 
 ## Installation
 
-#### Donwload Code | Clone the Repo
+#### Download Code | Clone the Repo
 
 ```
 git clone {repo_name}
