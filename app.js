@@ -1,16 +1,12 @@
-require('./config/config');     //instantiate configuration variables
-require('./global_functions');  //instantiate global functions
-
-console.log("Environment:", CONFIG.app)
-
 const express 		= require('express');
 const logger 	    = require('morgan');
 const bodyParser 	= require('body-parser');
 const passport      = require('passport');
-
 const v1 = require('./routes/v1');
-
 const app = express();
+const pe = require('parse-error');
+
+const CONFIG = require('./config/config');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -21,6 +17,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //Passport
 app.use(passport.initialize());
 
+//Log Env
+console.log("Environment:", CONFIG.app)
 //DATABASE
 const models = require("./models");
 models.sequelize.authenticate().then(() => {
@@ -74,3 +72,8 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+//This is here to handle all the uncaught promise rejections
+process.on('unhandledRejection', error => {
+    console.error('Uncaught Error', pe(error));
+});

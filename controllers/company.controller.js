@@ -1,4 +1,5 @@
 const Company = require('../models').Company;
+const { to, ReE, ReS } = require('../services/util.service');
 
 const create = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
@@ -19,7 +20,7 @@ const create = async function(req, res){
     let company_json = company.toWeb();
     company_json.users = [{user:user.id}];
 
-    return ReS(res,{company:company_json}, 201);
+    return ReS(res, {company:company_json}, 201);
 }
 module.exports.create = create;
 

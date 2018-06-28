@@ -1,9 +1,9 @@
 const express 			= require('express');
 const router 			= express.Router();
 
-const UserController 	= require('./../controllers/UserController');
-const CompanyController = require('./../controllers/CompanyController');
-const HomeController 	= require('./../controllers/HomeController');
+const UserController 	= require('../controllers/user.controller');
+const CompanyController = require('../controllers/company.controller');
+const HomeController 	= require('../controllers/home.controller');
 
 const custom 	        = require('./../middleware/custom');
 

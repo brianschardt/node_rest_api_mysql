@@ -1,4 +1,6 @@
 'use strict';
+const {TE, to}              = require('../services/util.service');
+
 module.exports = (sequelize, DataTypes) => {
   var Model = sequelize.define('Company', {
     name: DataTypes.STRING

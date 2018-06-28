@@ -1,5 +1,6 @@
-const User 			= require('./../models').User;
+const { User } 	    = require('../models');
 const validator     = require('validator');
+const { to, TE }    = require('../services/util.service');
 
 const getUniqueKeyFromBody = function(body){// this is so they can send in 3 options unique_key, email, or phone and it will work
     let unique_key = body.unique_key;
@@ -17,10 +18,10 @@ const getUniqueKeyFromBody = function(body){// this is so they can send in 3 opt
 }
 module.exports.getUniqueKeyFromBody = getUniqueKeyFromBody;
 
-const createUser = async function(userInfo){
+const createUser = async (userInfo) => {
     let unique_key, auth_info, err;
 
-    auth_info={}
+    auth_info={};
     auth_info.status='create';
 
     unique_key = getUniqueKeyFromBody(userInfo);
@@ -65,7 +66,6 @@ const authUser = async function(userInfo){//returns token
         auth_info.method='email';
 
         [err, user] = await to(User.findOne({where:{email:unique_key}}));
-        console.log(err, user, unique_key);
         if(err) TE(err.message);
 
     }else if(validator.isMobilePhone(unique_key, 'any')){//checks if only phone number was sent
