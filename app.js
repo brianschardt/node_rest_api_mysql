@@ -2,9 +2,11 @@ const express 		= require('express');
 const logger 	    = require('morgan');
 const bodyParser 	= require('body-parser');
 const passport      = require('passport');
-const v1 = require('./routes/v1');
-const app = express();
-const pe = require('parse-error');
+const pe            = require('parse-error');
+const cors          = require('cors');
+
+const v1    = require('./routes/v1');
+const app   = express();
 
 const CONFIG = require('./config/config');
 
@@ -32,19 +34,7 @@ if(CONFIG.app==='dev'){
     // models.sequelize.sync({ force: true });//deletes all tables then recreates them useful for testing and development purposes
 }
 // CORS
-app.use(function (req, res, next) {
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization, Content-Type');
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    // Pass to next layer of middleware
-    next();
-});
+app.use(cors());
 
 app.use('/v1', v1);
 
