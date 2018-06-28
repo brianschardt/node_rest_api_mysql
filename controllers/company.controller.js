@@ -1,4 +1,4 @@
-const Company = require('../models').Company;
+const { Company } = require('../models');
 const { to, ReE, ReS } = require('../services/util.service');
 
 const create = async function(req, res){
