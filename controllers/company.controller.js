@@ -2,7 +2,6 @@ const { Company } = require('../models');
 const { to, ReE, ReS } = require('../services/util.service');
 
 const create = async function(req, res){
-    res.setHeader('Content-Type', 'application/json');
     let err, company;
     let user = req.user;
 
@@ -25,7 +24,6 @@ const create = async function(req, res){
 module.exports.create = create;
 
 const getAll = async function(req, res){
-    res.setHeader('Content-Type', 'application/json');
     let user = req.user;
     let err, companies;
 
@@ -52,7 +50,6 @@ const getAll = async function(req, res){
 module.exports.getAll = getAll;
 
 const get = function(req, res){
-    res.setHeader('Content-Type', 'application/json');
     let company = req.company;
 
     return ReS(res, {company:company.toWeb()});

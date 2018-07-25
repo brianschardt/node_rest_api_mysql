@@ -3,7 +3,6 @@ const authService       = require('../services/auth.service');
 const { to, ReE, ReS }  = require('../services/util.service');
 
 const create = async function(req, res){
-    res.setHeader('Content-Type', 'application/json');
     const body = req.body;
 
     if(!body.unique_key && !body.email && !body.phone){
@@ -22,7 +21,6 @@ const create = async function(req, res){
 module.exports.create = create;
 
 const get = async function(req, res){
-    res.setHeader('Content-Type', 'application/json');
     let user = req.user;
 
     return ReS(res, {user:user.toWeb()});
