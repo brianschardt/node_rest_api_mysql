@@ -1,5 +1,8 @@
 # Rest Api Node and Mysql
 
+## Note: Please look at this new tempalate that uses nest, and graphql. It is much more up to date as I do not use this template anymore
+https://github.com/brianschardt/node_nest_graphql_template
+
 ## Description
 This is an Restful API for Node.js and Mysql. Designed after PHP's beautiful Laravel. This is in the MVC format,
 except because it is an API there are no views, just models and controllers.
