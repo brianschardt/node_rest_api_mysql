@@ -1,0 +1,5 @@
+const CONFIG = require('./config/config');
+
+module.exports = {
+    'url': CONFIG.db_dialect + '://' + CONFIG.db_user + ':' + CONFIG.db_password + '@' + CONFIG.db_host + ':' + CONFIG.db_port + '/' + CONFIG.db_name,
+}
